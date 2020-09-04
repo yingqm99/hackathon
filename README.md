@@ -1,11 +1,24 @@
-###front-end
+### file structure
+```
+--frontend
+  --App.js (main file)
+  --components
+    --TextBox.js
+
+--backend
+  --env
+  --index.js  (main server)
+  --tone-analyzer.py (test file to interact with ibm api)
+```
+
+### front-end
 ```
 cd front-end
 npm install
 npm start
 ```
 
-###back-end
+### back-end
 ```
 cd backend
 python3 -m venv env
@@ -14,7 +27,7 @@ pip install --upgrade "ibm-watson>=4.6.0"
 python3 index.py
 ```
 
-###endpoint
+### endpoint
 ```
 localhost:3000
 :/   
