@@ -1,8 +1,8 @@
 ###front-end
 ```
 cd front-end
-yarn start
-
+npm install
+npm start
 ```
 
 ###back-end
@@ -10,6 +10,7 @@ yarn start
 cd backend
 python3 -m venv env
 source env/bin/activate
+pip install --upgrade "ibm-watson>=4.6.0"
 python3 index.py
 ```
 
