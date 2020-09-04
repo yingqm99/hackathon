@@ -15,7 +15,28 @@ python3 index.py
 
 ###endpoint
 ```
-:localhost:3000
+localhost:3000
 :/   
-:/test  
+:/test
+
+:/emails
+ [
+     {emailid: "",
+      date: "",
+      content: ""},
+     ...
+ ]
+
+:/email/date=?
+ [
+     {emailid: "",
+      sore: "",
+      tone: ""},
+     ...
+ ]
+
+
 ```
+
+
+
