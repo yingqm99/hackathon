@@ -57,7 +57,12 @@ localhost:3000
      ...
  ]
 
+```
 
+### Graph
+```
+1. date ~ # emails
+2. date ~ # emotion
 ```
 
 
