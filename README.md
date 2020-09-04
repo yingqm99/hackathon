@@ -1,10 +1,3 @@
-### gmail api setup
-```
-python3 -m venv env
-source env/bin/activate
-pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-```
-
 
 
 ### file structure
@@ -34,6 +27,12 @@ python3 -m venv env
 source env/bin/activate
 pip install --upgrade "ibm-watson>=4.6.0"
 python3 index.py
+```
+
+### gmail api setup
+in the virtual enviroment ^
+```
+pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 ```
 
 ### endpoint
