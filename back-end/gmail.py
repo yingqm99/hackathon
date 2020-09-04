@@ -1,6 +1,7 @@
 import pickle
 import os.path
 import json
+from dateutil.parser import parse
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -9,7 +10,7 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 def get_messages(service, user_id):
     try:
-        response = service.users().messages().list(userId=user_id).execute()
+        response = service.users().messages().list(userId=user_id, maxResults=10).execute()
         next_page = response["nextPageToken"]
         messages = [item.get('id') for item in response["messages"]]
         return messages
@@ -43,7 +44,8 @@ def clean_up(messages):
         df['receiver'] = geojson[0].get('value')
         geojson = list(filter(lambda x: x['name'] == 'Date',
                             headers))
-        df['date'] = geojson[0].get('value')
+        date = parse(geojson[0].get('value'))
+        df['date'] = str(date.year)+'{0:0=2d}'.format(date.month)+'{0:0=2d}'.format(date.day)
         json_dict.append(df)
     return json_dict
 
