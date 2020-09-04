@@ -1,3 +1,12 @@
+### gmail api setup
+```
+python3 -m venv env
+source env/bin/activate
+pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+```
+
+
+
 ### file structure
 ```
 --frontend
