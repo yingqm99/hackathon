@@ -1,7 +1,8 @@
 
 import React from 'react';
-
 import { Input } from 'antd';
+import { LineChart, Timeline, ColumnChart, AreaChart } from 'react-chartkick';
+import 'chart.js';
 
 class TextBox extends React.Component {
 
@@ -41,10 +42,10 @@ class TextBox extends React.Component {
                 const emails = data.data;
                 emails.forEach((email, index) => {
                     const { date, score, tone } = email
-                    console.log(`${date}:${score}:${tone}`);
+                    console.log(`${date}:${score}:${typeof(tone)}`);
                     this.setState((prevState) => ({
                         dates: [...prevState.dates, date],
-                        scores: [...prevState.scores, score],
+                        scores: [...prevState.scores, parseFloat(score)],
                         tones: [...prevState.tones, tone]
                     }));
                 })
@@ -54,6 +55,16 @@ class TextBox extends React.Component {
     }
 
     render() {
+        const { dates, scores, tones } = this.state;
+
+        const lineChartData = dates.map((date, index) => {
+            console.log(date, index);
+            return ([date, scores[index]]);
+        });
+
+
+        console.log(lineChartData)
+
         return (
             <div>
                 <Input 
@@ -64,6 +75,9 @@ class TextBox extends React.Component {
 
                 </Input>
                 <p>Press enter to submit</p>
+                
+                <LineChart data={lineChartData} />
+
             </div>
         )
     }

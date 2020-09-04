@@ -32,7 +32,7 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 def get_messages(service, user_id):
     try:
-        response = service.users().messages().list(userId=user_id, maxResults=10).execute()
+        response = service.users().messages().list(userId=user_id, maxResults=20).execute()
         next_page = response["nextPageToken"]
         messages = [item.get('id') for item in response["messages"]]
         return messages
@@ -128,6 +128,8 @@ def extract_email():
         ### analyzing text
         toneRes = requests.get(url, params=(('version', '2017-09-21'), ('text', text)), auth=('apikey', apikey))
         toneRes = json.loads(toneRes.text)
+        if "document_tone" not in toneRes:
+            continue
         docTones = toneRes["document_tone"]["tones"]
         if not docTones:
             continue

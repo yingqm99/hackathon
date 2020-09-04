@@ -16,6 +16,8 @@
 ### front-end
 ```
 cd front-end
+npm install d3
+npm install react-chartkick chart.js
 npm install
 npm start
 ```
@@ -49,21 +51,21 @@ localhost:3000
      ...
  ]
 
-:/email/date=?
- [
-     {emailid: "",
-      sore: "",
-      tone: ""},
-     ...
- ]
+:/email
+ {
+     "data" : [
+         {
+             "date": "",
+             "emailod" : "",
+             "score": "",
+             "tone": ""
+         },
+         ...
+     ]
+ }
 
 ```
 
-### Graph
-```
-1. date ~ # emails
-2. date ~ # emotion
-```
 
 
 
