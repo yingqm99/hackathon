@@ -61,7 +61,7 @@ def main():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'back-end/credentials.json', SCOPES)
+                'credentials.json', SCOPES)
             creds = flow.run_local_server(port=0)
         with open('token.pickle', 'wb') as token:
             pickle.dump(creds, token)
@@ -70,6 +70,9 @@ def main():
     message_ids = get_messages(service, 'me')
     results = get_message(service, 'me', message_ids)
     textualize = clean_up(results)
+
+    print("textualize: ", textualize)
+
     with open('texts.json', 'w') as json_file:
         json.dump(textualize, json_file)
     

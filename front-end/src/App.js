@@ -9,7 +9,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <TextBox />
-        <div> Unicode Hackathon </div>
       </div>
     );
   }
