@@ -3,12 +3,19 @@ import React, {Component} from 'react';
 // import * as d3 from "d3";
 import { LineChart } from 'react-chartkick';
 import 'chart.js';
+import ListItems from './ListItems';
+
+import '../styles/EmailDate.css';
+
 
 class EmailDate extends Component {
     
     constructor(props) {
         super(props);
-        this.state = { data: {} };
+        this.state = { 
+            data: {} ,
+            emails: []
+        };
     }
     // this.state = { data: {} };
 
@@ -20,7 +27,8 @@ class EmailDate extends Component {
           return response.json();
         })
         .then((data) => {
-            console.log(data.data)
+            console.log("/email data", data.data);
+
             var count = 0;
             var dict = {};
             
@@ -38,22 +46,29 @@ class EmailDate extends Component {
                     break;
                 }
             }
-            console.log(dict)
+
+            console.log("/email dict", dict);
             
           this.setState({
             data: dict,
+            emails: data.data
           });
         })
         .catch((error) => console.log(error));
     }
 
     render(){
-        const { data } = this.state;
-        // console.log(data)
+        const { data, emails } = this.state;
 
         return (
-            <div className="linechart">
-                 <LineChart data={data}/>
+            <div className="emaildate">
+                <div className="listitems">
+                    <ListItems emails={emails} />
+                </div>
+                <div className="linecharts">
+                    <LineChart data={data} height={450} width={900}/>
+                </div>
+                
             </div>
         );
     }

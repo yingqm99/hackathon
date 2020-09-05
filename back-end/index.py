@@ -215,7 +215,8 @@ def extract_email():
             'emailid': emailid,
             'date': date,
             'score': maxDocTone['score'],
-            'tone': maxDocTone['tone_name']
+            'tone': maxDocTone['tone_name'],
+            'text': text
         })
 
         email['document_tone'] = toneRes['document_tone']

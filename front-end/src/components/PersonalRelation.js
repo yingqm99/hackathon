@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 // import * as d3 from "d3";
 import { ColumnChart } from 'react-chartkick';
 import 'chart.js';
+import {Container, Row, Col} from 'react-bootstrap';
 
 class PersonalRelation extends Component {
     
@@ -60,8 +61,21 @@ class PersonalRelation extends Component {
         const { data_like_most } = this.state;
         return (
             <div className="histogram">
-                 <ColumnChart data={data}/>
-                 {/* <ColumnChart data={data_like_most}/> */}
+
+                <Container>
+                    <Row>
+                        <Col>
+                         <h3>Top 10 Favoriate People</h3>
+                         <ColumnChart data={data_like_most}/>
+                        </Col>
+                        <Col>
+                         <h3>Least 10 Favoriate People</h3>
+                         
+                         <ColumnChart data={data}/>
+                        </Col>
+                    </Row>
+                </Container>
+                
             </div>
         );
     }
