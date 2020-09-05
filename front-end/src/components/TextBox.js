@@ -6,6 +6,7 @@ import 'chart.js';
 import EmailDate from './EmailDate';
 import PieChart from './PieChart';
 import PersonalRelation from './PersonalRelation';
+import Change from './Change';
 import {InputGroup, FormControl, Badge} from 'react-bootstrap'
 
 class TextBox extends React.Component {
@@ -104,6 +105,8 @@ class TextBox extends React.Component {
                 <PieChart />
 
                 <PersonalRelation />
+                
+                <Change />
             </div>
         )
     }
