@@ -33,9 +33,9 @@ def aggregate_by_tone(data):
     """
     now = datetime.date.today()
     date_one = str(now.year)+'{0:0=2d}'.format(now.month)+'{0:0=2d}'.format(now.day)
-    one_week_ago = now - datetime.timedelta(days=7)
+    one_week_ago = now - datetime.timedelta(days=1)
     date_two = str(one_week_ago.year)+'{0:0=2d}'.format(one_week_ago.month)+'{0:0=2d}'.format(one_week_ago.day)
-    two_week_ago = now - datetime.timedelta(days=14)
+    two_week_ago = now - datetime.timedelta(days=2)
     date_three = str(two_week_ago.year)+'{0:0=2d}'.format(two_week_ago.month)+'{0:0=2d}'.format(two_week_ago.day)
     recent_json_dict = {}
     previous_json_dict = {}
@@ -46,7 +46,7 @@ def aggregate_by_tone(data):
             for tone in tones:
                 if tone['tone_name'] == '':
                     continue
-                if tone['tone_name'] in previous_json_dict:
+                if tone['tone_name'] in recent_json_dict:
                     recent_json_dict[tone['tone_name']]["score"] += tone['score']
                     recent_json_dict[tone['tone_name']]["count"] += 1
                 else:
@@ -54,9 +54,9 @@ def aggregate_by_tone(data):
                     recent_json_dict[tone['tone_name']]["score"] = tone['score']
                     recent_json_dict[tone['tone_name']]["count"] = 1
                 if tone['tone_name'] not in most_recent:
-                    most_recent['tone_name'] = item['date']
-                elif tone['tone_name'] > most_recent['tone_name']:
-                    most_recent['tone_name'] = item['date']
+                    most_recent[tone['tone_name']] = item['date']
+                elif tone['tone_name'] > most_recent[tone['tone_name']]:
+                    most_recent[tone['tone_name']] = item['date']
         elif int(item['date']) > int(date_three):
             for tone in tones:
                 if tone['tone_name'] == '':
@@ -79,8 +79,7 @@ def aggregate_by_tone(data):
         json_dict[tone]['a_week_before'] = {}
         json_dict[tone]['a_week_before']['score'] = previous_json_dict[tone]['score'] / previous_json_dict[tone]['count']
         json_dict[tone]['a_week_before']['count'] = previous_json_dict[tone]['count']
-        if tone in most_recent:
-            json_dict[tone]['most_recent_date'] = most_recent[tone]
+        json_dict[tone]['most_recent_date'] = most_recent[tone]
 
     for tone in recent_json_dict:
         if tone not in json_dict:
@@ -88,8 +87,7 @@ def aggregate_by_tone(data):
         json_dict[tone]['now'] = {}
         json_dict[tone]['now']['score'] = recent_json_dict[tone]['score'] / recent_json_dict[tone]['count']
         json_dict[tone]['now']['count'] = recent_json_dict[tone]['count']
-        if tone in most_recent and tone not in json_dict:
-            json_dict[tone]['most_recent_date'] = most_recent[tone]
+        json_dict[tone]['most_recent_date'] = most_recent[tone]
 
     print(json_dict)
     return json_dict
@@ -122,6 +120,7 @@ def aggregate_by_date(data):
                     json_dict_temp[item['date']]['tones'][max_tone]['scores'] += max_score
                     json_dict_temp[item['date']]['tones'][max_tone]['count'] += 1
                 else:
+                    json_dict_temp[item['date']]['tones'][max_tone] = {}
                     json_dict_temp[item['date']]['tones'][max_tone]['scores'] = max_score
                     json_dict_temp[item['date']]['tones'][max_tone]['count'] = 1
         else:
@@ -175,7 +174,7 @@ def main():
         item['document_tone'] = response['document_tone']
 
 
-    aggregate_by_tone(data)
+    print(aggregate_by_tone(data))
 
 
 
