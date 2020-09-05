@@ -14,12 +14,12 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
-from utils import aggregate_by_tone
+from utils import aggregate_by_tone, aggregate_by_date, recent_tone
 
 app = Flask(__name__)
 
 ############### IBM ###############
-apikey = "LHiAsPDfojrabmyLdVSbw87gY4hVJScdoIyRD7nNHKao"
+apikey = "LHiAsPDfojrabmyLdVSbw87gY4hVJScdoIyRD7nNHKao" #TODO
 url = "https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/a624be02-9f6a-4a57-8b1c-2fa687021e3b/v3/tone"
 version = "4.6.0"
 
@@ -36,7 +36,7 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 def get_messages(service, user_id):
     try:
-        response = service.users().messages().list(userId=user_id, maxResults=20).execute()
+        response = service.users().messages().list(userId=user_id, maxResults=50).execute()
         next_page = response["nextPageToken"]
         messages = [item.get('id') for item in response["messages"]]
         return messages
@@ -99,7 +99,7 @@ def gmailAuth():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
+                'back-end/credentials.json', SCOPES)
             creds = flow.run_local_server(port=0)
         with open('token.pickle', 'wb') as token:
             pickle.dump(creds, token)
@@ -108,7 +108,7 @@ def gmailAuth():
     message_ids = get_messages(service, 'me')
     results = get_message(service, 'me', message_ids)
     textualize = clean_up(results)
-    # print("textualize: ", textualize)
+    print("textualize: ", textualize)
     return textualize
 
 
@@ -123,6 +123,48 @@ def hello_world():
     print(response)
 
     return 'Hello, World!'
+
+@app.route('/recent_emotions')
+def recent_emotion():
+    with open('cache.json') as f:
+        data = json.load(f)
+    result = recent_tone(data)
+    return result
+
+@app.route('/change_of_emotions')
+def change_of_emotions():
+    with open('cache.json') as f:
+        data = json.load(f)
+    result = aggregate_by_tone(data)
+    print(result)
+    list_json = []
+    for item in result:
+        if 'now' in result[item] and 'a_week_before' in result[item]:
+            list_json.append({
+                'tone_name': item,
+                'change': result[item]['now']['score'] - result[item]['a_week_before']['score'],
+                'most_recent_date': result[item]['most_recent_date']
+            })
+    return {
+        'data': list_json
+        }
+    
+@app.route('/emotion-calender')
+def emotion_by_day():
+    with open('cache.json') as f:
+        data = json.load(f)
+    result = aggregate_by_date(data)
+    print(result)
+    list_json = []
+    for item in result:
+        list_json.append({
+            'date': item,
+            'tone_name': result[item]['tone_name'],
+            'tone_score': result[item]['tone_score']
+        })
+    return {
+        'data': list_json
+        }
 
 @app.route('/email')
 def extract_email():
@@ -162,15 +204,12 @@ def extract_email():
         })
 
         email['document_tone'] = toneRes['document_tone']
-
-    tones = aggregate_by_tone(emails)
-
-    print("==========tones:============")
-    print(tones)
+    with open('cache-new.json', 'w') as json_file:
+        json.dump(emails, json_file)
 
     return {
         'data': data,
-        'tones': tones
+        #deleted tones
     }
 
 
