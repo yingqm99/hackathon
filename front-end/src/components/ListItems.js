@@ -7,9 +7,20 @@ import { Tooltip } from 'antd';
 class Item extends React.Component {
     render() {
         const { date, text, tone } = this.props;
+
+        let colors = {
+            'Joy': 'joy',
+            'Sadness': 'sadness',
+            'Analytical': 'analytical',
+            'Tentative': 'tentative',
+            'Confident': 'confident'
+        }
+
+        let color = colors[tone];
+
         return(
             <div className="item">
-               <p>Date: <strong>{date}</strong> Tone: <strong>{tone}</strong></p>
+               <p>Date: <strong>{date}</strong> Tone: <span class={color}> <strong>{tone}</strong></span> </p>
                <p>Text: {text}</p>
             </div>
         )
