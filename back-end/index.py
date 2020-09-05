@@ -14,6 +14,8 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
+from utils import aggregate_by_tone
+
 app = Flask(__name__)
 
 ############### IBM ###############
@@ -109,6 +111,7 @@ def gmailAuth():
     # print("textualize: ", textualize)
     return textualize
 
+
 ############# REST API ###############
 
 @app.route('/test')
@@ -158,9 +161,16 @@ def extract_email():
             'tone': maxDocTone['tone_name']
         })
 
+        email['document_tone'] = toneRes['document_tone']
+
+    tones = aggregate_by_tone(emails)
+
+    print("==========tones:============")
+    print(tones)
 
     return {
-        'data': data
+        'data': data,
+        'tones': tones
     }
 
 

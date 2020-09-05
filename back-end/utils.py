@@ -41,7 +41,12 @@ def aggregate_by_tone(data):
     previous_json_dict = {}
     most_recent = {}
     for item in data:
+
+        if 'document_tone' not in item:
+            continue
+
         tones = item['document_tone']['tones']
+
         if int(item['date']) > int(date_two):
             for tone in tones:
                 if tone['tone_name'] == '':
@@ -174,7 +179,7 @@ def main():
 
         item['document_tone'] = response['document_tone']
 
-
+    print("data: ", data)
     aggregate_by_tone(data)
 
 

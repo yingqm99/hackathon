@@ -1,8 +1,10 @@
 
 import React from 'react';
 import { Input } from 'antd';
+import BarChart from './Barchart';
 import { LineChart, Timeline, ColumnChart, AreaChart } from 'react-chartkick';
 import 'chart.js';
+
 
 class TextBox extends React.Component {
 
@@ -77,6 +79,8 @@ class TextBox extends React.Component {
                 <p>Press enter to submit</p>
                 
                 <LineChart data={lineChartData} />
+
+                <BarChart w={700} h={400} />
 
             </div>
         )
