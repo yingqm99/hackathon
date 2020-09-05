@@ -63,6 +63,27 @@ localhost:3000
          ...
      ]
  }
+ 
+ :/recent_emotions
+ [ 
+ ...,
+ {
+      "tone_name" : str,
+      "count" : int
+ },
+ ...,
+ ]
+
+ :/change_of_emotions
+ [ 
+ ...,
+ {
+       'tone_name': str,
+       'change': float,
+       'most_recent_date': int
+ },
+ ...,
+ ]
 
 ```
 
