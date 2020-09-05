@@ -47,7 +47,7 @@ class Change extends Component {
         const { data } = this.state;
         return (
             <div className="histogram">
-                 <BarChart data={data}/>
+                 <BarChart data={data} downloads="tonesChange"/>
             </div>
         );
     }

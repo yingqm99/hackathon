@@ -15,7 +15,6 @@ class Item extends React.Component {
             'Tentative': 'tentative',
             'Confident': 'confident'
         }
-
         let color = colors[tone];
 
         return(
@@ -44,7 +43,9 @@ class ListItems extends React.Component {
         console.log("items: ", items);
 
         return (
-            <div>{items}</div>
+            <div>
+                {items}
+            </div>
         )
     }
 }

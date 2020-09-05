@@ -53,7 +53,7 @@ class pieChart extends Component {
 
         return (
             <div className="piechart">
-                 <PieChart data={data}/>
+                 <PieChart data={data} download="tonesRatio"/>
             </div>
         );
     }

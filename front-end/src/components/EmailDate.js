@@ -8,6 +8,7 @@ import PieChart from './PieChart';
 // import PersonalRelation from './PersonalRelation';
 
 import '../styles/EmailDate.css';
+import Spinner from './Spinner';
 import PersonalRelation from './PersonalRelation';
 import Change from './Change';
 import { obj } from 'pumpify';
@@ -18,7 +19,8 @@ class EmailDate extends Component {
         super(props);
         this.state = { 
             data: {} ,
-            emails: []
+            emails: [],
+            loading: true
         };
     }
     // this.state = { data: {} };
@@ -27,9 +29,9 @@ class EmailDate extends Component {
         
         //fetch url 
         fetch('/email', { credentials: 'same-origin' })
-        .then((response) => {
-        if (!response.ok) throw Error(response.statusText);
-        return response.json();
+            .then((response) => {
+            if (!response.ok) throw Error(response.statusText);
+            return response.json();
         })
         .then((data) => {
             console.log("/email data", data.data);
@@ -54,42 +56,49 @@ class EmailDate extends Component {
 
             console.log("/email dict", dict);
             
-        this.setState({
-            data: dict,
-            emails: data.data
-        });
+            this.setState({
+                data: dict,
+                emails: data.data,
+                loading: false
+            });
         })
         .catch((error) => console.log(error));
 
     }
 
     render(){
-        const { data, emails } = this.state;
+        const { data, emails, loading } = this.state;
 
         return (
             <div className="emaildate">
-                <div className="listitems">
-                    <ListItems emails={emails} />
-                </div>
-                <div className="content">
-                    <div className="linecharts">
-                        <PieChart />
-                        <br />
-                        <br />
-                        <LineChart data={data} height={450} width={900}/>
-                        <br />
-                        <br />
-                        <Change />
+ 
+                {loading?
+                    <Spinner />
+                    :
+                <div>
+                    <div className="listitems">                         
+                       <ListItems emails={emails} />
+                    </div>            
+                        <div className="content">
+                            <div className="linecharts">
+                                <PieChart />
+                                <br />
+                                <br />
+                                <LineChart data={data} 
+                                            height={450} 
+                                            width={900}
+                                            download="email~date"/>
+                                <br />
+                                <br />
+                                <Change />
+                            </div>
+                            {/* <div className="piecharts">
+                                <PieChart />
+                            </div> */}
+                        </div>
                     </div>
-                    {/* <div className="piecharts">
-                         <PieChart />
-                    </div> */}
-                </div>
+                }
 
-                {/* <div>
-                    <PersonalRelation
-                </div> */}
-                
             </div>
         );
     }

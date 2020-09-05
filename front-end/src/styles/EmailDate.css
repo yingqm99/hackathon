@@ -74,3 +74,15 @@
     background-color: white;
     border:solid green;
 } */
+
+.spinner {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+svg path,
+svg rect{
+  fill: #FF6700;
+}
