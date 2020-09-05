@@ -14,7 +14,7 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
-from utils import aggregate_by_tone, aggregate_by_date, recent_tone
+from utils import aggregate_by_tone, aggregate_by_date, recent_tone, aggregate_by_person
 
 app = Flask(__name__)
 
@@ -124,12 +124,22 @@ def hello_world():
 
     return 'Hello, World!'
 
+
 @app.route('/recent_emotions')
 def recent_emotion():
     with open('cache.json') as f:
         data = json.load(f)
     result = recent_tone(data)
     return result
+
+
+@app.route('/personal_relations')
+def personal_relations():
+    with open('cache.json') as f:
+        data = json.load(f)
+    result = aggregate_by_person(data)
+    return result
+
 
 @app.route('/change_of_emotions')
 def change_of_emotions():
