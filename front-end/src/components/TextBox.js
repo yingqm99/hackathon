@@ -7,7 +7,7 @@ import EmailDate from './EmailDate';
 import PieChart from './PieChart';
 import PersonalRelation from './PersonalRelation';
 import Change from './Change';
-import {InputGroup, FormControl, Badge} from 'react-bootstrap'
+import {InputGroup, FormControl, Badge, Container, Row, Col} from 'react-bootstrap'
 
 class TextBox extends React.Component {
 
@@ -74,10 +74,11 @@ class TextBox extends React.Component {
             <div>
                 
                 <div>
+                <div style={{height: '100px'}}>
                   <h1>
-                    Example heading
-                    <Badge variant="secondary">New</Badge>
+                    Recent Email Anaylsis
                   </h1>
+                </div>
                   
                   
                   <InputGroup size="lg" className="mb-3">
@@ -98,15 +99,42 @@ class TextBox extends React.Component {
                 
                 <p>Press enter to submit</p>
                 
-                <LineChart data={lineChartData} />
+                <Container>
+                    <Row>
+                        <Col>
+                            <h3>Emails received per day</h3>
+                            <EmailDate />
+                        </Col>
+                        <Col>
+                            <h3>Emotions of recent days</h3>
+                            <PieChart />
+                        </Col>
+                    </Row>
+                </Container>
                 
-                <EmailDate />
                 
-                <PieChart />
-
-                <PersonalRelation />
+                <Container>
+                    <Row>
+                        <Col>
+                            <PersonalRelation />
+                        </Col>
+                        
+                    </Row>
+                </Container>
                 
-                <Change />
+                
+                <Container>
+                    <Row>
+                        <Col>
+                            <h3>Mood Change in recent days</h3>
+                            <Change />
+                        </Col>
+                    </Row>
+                </Container>
+                
+                
+                
+                
             </div>
         )
     }
