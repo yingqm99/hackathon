@@ -15,7 +15,7 @@ class Change extends Component {
     
     componentDidMount(){
         // get from localStorage
-        if (Object.keys(this.state.data).length == 0 && this.state.data.constructor === Object) {
+        if (Object.keys(this.state.data).length != 0 && this.state.data.constructor === Object) {
             this.setState({
                 data: localStorage.getItem('ChangeEmotionDat')
             });
