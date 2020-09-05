@@ -8,37 +8,32 @@ class pieChart extends Component {
     
     constructor(props) {
         super(props);
-        this.state = { data: {}};
+        this.state = { data: [] };
     }
     // this.state = { data: {} };
               
     
     componentDidMount(){
-
-        fetch('/email', { credentials: 'same-origin' })
+        
+        fetch('/recent_emotions', { credentials: 'same-origin' })
         .then((response) => {
           if (!response.ok) throw Error(response.statusText);
           return response.json();
         })
         .then((data) => {
             var count = 0;
-            var dict = {};
-
-            for (var key in data){
-                if (!(key in dict) && isNaN(key) && key){
-                    dict[key]['tone_name'] = 1;
-                }
-                else if (key in dict){
-                    dict[key]['tone_name'] = dict[key]['tone_name'] + 1;
-                }
-                count = count + 1;
-                if (count === 30) {
-                    break;
-                }
+            var dict = [];
+            console.log(data.data);
+            
+            var i;
+            for (i = 0; i < data.data.length; ++i){
+                var tempList = [];
+                console.log(data.data[i]);
+                tempList.push(data.data[i]['tone_name']);
+                tempList.push(data.data[i]['count']);
+                dict.push(tempList);
             }
-            
-            // data: {tone_name: count, ...}
-            
+
           this.setState({
             data: dict,
           });
@@ -48,17 +43,10 @@ class pieChart extends Component {
 
     render(){
         const { data } = this.state;
-        var emotion = [];
-        for (var key in data){
-            var tempList = [];
-            tempList.push(key);
-            tempList.push(data[key]);
-            emotion.push(tempList);
-        }
 
         return (
             <div className="piechart">
-                 <PieChart data={emotion}/>
+                 <PieChart data={data}/>
             </div>
         );
     }
