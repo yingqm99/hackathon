@@ -16,7 +16,7 @@ class pieChart extends Component {
     
     componentDidMount(){
         
-        if (Object.keys(this.state.data).length != 0 && this.state.data.constructor === Object) {
+        if (Object.keys(localStorage.getItem('pieChartData')).length !== 0) {
             this.setState({
                 data: localStorage.getItem('pieChartData')
             });

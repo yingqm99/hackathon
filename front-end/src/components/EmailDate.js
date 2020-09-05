@@ -25,7 +25,7 @@ class EmailDate extends Component {
 
     componentDidMount(){
         // get from localStorage
-        if (Object.keys(this.state.data).length != 0 && this.state.data.constructor === Object) {
+        if (Object.keys(localStorage.getItem('EmailDateData')).length !== 0) {
             this.setState({
                 data: localStorage.getItem('EmailDateData')
             });

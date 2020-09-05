@@ -17,7 +17,7 @@
     
 //     componentDidMount(){
         
-//         if (Object.keys(this.state.data).length != 0 && this.state.data.constructor === Object) {
+//         if (Object.keys(localStorage.getItem('PersonalRelationData')).length !== 0) {
 //             this.setState({
 //                 data: localStorage.getItem('PersonalRelationData')
 //             });
