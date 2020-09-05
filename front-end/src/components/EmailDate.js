@@ -4,9 +4,12 @@ import React, {Component} from 'react';
 import { LineChart } from 'react-chartkick';
 import 'chart.js';
 import ListItems from './ListItems';
+import PieChart from './PieChart';
+// import PersonalRelation from './PersonalRelation';
 
 import '../styles/EmailDate.css';
-
+import PersonalRelation from './PersonalRelation';
+import Change from './Change';
 
 class EmailDate extends Component {
     
@@ -65,9 +68,24 @@ class EmailDate extends Component {
                 <div className="listitems">
                     <ListItems emails={emails} />
                 </div>
-                <div className="linecharts">
-                    <LineChart data={data} height={450} width={900}/>
+                <div className="content">
+                    <div className="linecharts">
+                        <PieChart />
+                        <br />
+                        <br />
+                        <LineChart data={data} height={450} width={900}/>
+                        <br />
+                        <br />
+                        <Change />
+                    </div>
+                    {/* <div className="piecharts">
+                         <PieChart />
+                    </div> */}
                 </div>
+
+                {/* <div>
+                    <PersonalRelation
+                </div> */}
                 
             </div>
         );

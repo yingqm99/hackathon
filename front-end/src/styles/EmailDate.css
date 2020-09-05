@@ -1,0 +1,40 @@
+.emaildate {
+    
+}
+
+.listitems {
+    background-color:rgb(255, 255, 255);
+    float:left; 
+    margin-left: 100px;
+    padding-left: 20px;
+    width:400px; 
+    height:800px; 
+    
+    overflow:scroll;
+    position: relative;
+
+    border:solid grey; 
+}
+
+.content {
+    float: left;
+    margin-left: 50px;
+}
+
+.linecharts {
+    /* background-color: green; */
+    float:left; 
+    margin-left: 100px;
+    padding-right: 50px;
+    /* width:900px; */
+    height:500px;
+    background-color:white;  
+    /* border:solid red;  */
+}
+
+/* .piecharts {
+    margin-left: 100px;
+
+    background-color: white;
+    border:solid green;
+} */
