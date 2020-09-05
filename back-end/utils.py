@@ -9,10 +9,10 @@ APIKEY = "LHiAsPDfojrabmyLdVSbw87gY4hVJScdoIyRD7nNHKao"
 URL = "https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/a624be02-9f6a-4a57-8b1c-2fa687021e3b"
 VERSION = "4.6.0"
 
-def aggregate_by_person(data):
-    for item in data:
-        print(data[])
-    return NotImplemented
+# def aggregate_by_person(data):
+#     for item in data:
+#         print(data[])
+#     return NotImplemented
 
 
 def aggregate_by_tone(data):
@@ -168,7 +168,13 @@ def main():
 
         response = requests.get(URL+'/v3/tone', params=params, auth=('apikey', APIKEY))
         response = json.loads(response.text)
+        
+        if 'document_tone' not in response:
+            continue
+
         item['document_tone'] = response['document_tone']
+
+
     aggregate_by_tone(data)
 
 
