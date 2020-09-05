@@ -5,6 +5,7 @@ import { LineChart, Timeline, ColumnChart, AreaChart } from 'react-chartkick';
 import 'chart.js';
 import EmailDate from './EmailDate';
 import PieChart from './PieChart';
+import PersonalRelation from './PersonalRelation';
 import {InputGroup, FormControl, Badge} from 'react-bootstrap'
 
 class TextBox extends React.Component {
@@ -102,6 +103,7 @@ class TextBox extends React.Component {
                 
                 <PieChart />
 
+                <PersonalRelation />
             </div>
         )
     }
