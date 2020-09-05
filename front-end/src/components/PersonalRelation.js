@@ -61,7 +61,7 @@ class PersonalRelation extends Component {
         return (
             <div className="histogram">
                  <ColumnChart data={data}/>
-                 //<ColumnChart data={data_like_most}/>
+                 {/* <ColumnChart data={data_like_most}/> */}
             </div>
         );
     }
