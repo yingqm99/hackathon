@@ -64,26 +64,37 @@ localhost:3000
      ]
  }
  
+ 
  :/recent_emotions
- [ 
- ...,
- {
-      "tone_name" : str,
-      "count" : int
- },
- ...,
- ]
+{
+ "data":[{
+          "tone_name" : str,
+          "count" : int
+          },
+        ...,]
+ }
+
 
  :/change_of_emotions
- [ 
- ...,
  {
-       'tone_name': str,
-       'change': float,
-       'most_recent_date': int
- },
- ...,
- ]
+ "data":[{
+          'tone_name': str,
+          'change': float,
+          'most_recent_date': int
+          },
+        ...,]
+  }
+  
+  
+  :/personal_relations
+  {
+    "data":[{
+          'person_name': str,
+          'score': int,
+          },
+          ...,]
+  }
+
 
 ```
 
