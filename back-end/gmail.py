@@ -10,7 +10,7 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 def get_messages(service, user_id):
     try:
-        response = service.users().messages().list(userId=user_id, maxResults=50).execute()
+        response = service.users().messages().list(userId=user_id, maxResults=100).execute()
         next_page = response["nextPageToken"]
         messages = [item.get('id') for item in response["messages"]]
         return messages

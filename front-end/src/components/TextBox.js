@@ -1,10 +1,9 @@
 
 import React from 'react';
 import { Input } from 'antd';
-import BarChart from './Barchart';
 import { LineChart, Timeline, ColumnChart, AreaChart } from 'react-chartkick';
 import 'chart.js';
-
+import EmailDate from './EmailDate'
 
 class TextBox extends React.Component {
 
@@ -25,7 +24,7 @@ class TextBox extends React.Component {
     } 
 
     submitText = () => {
-        console.log("submit to server!");
+        // console.log("submit to server!");
 
         // json response format
         // {
@@ -44,7 +43,7 @@ class TextBox extends React.Component {
                 const emails = data.data;
                 emails.forEach((email, index) => {
                     const { date, score, tone } = email
-                    console.log(`${date}:${score}:${typeof(tone)}`);
+                    // console.log(`${date}:${score}:${typeof(tone)}`);
                     this.setState((prevState) => ({
                         dates: [...prevState.dates, date],
                         scores: [...prevState.scores, parseFloat(score)],
@@ -60,12 +59,12 @@ class TextBox extends React.Component {
         const { dates, scores, tones } = this.state;
 
         const lineChartData = dates.map((date, index) => {
-            console.log(date, index);
+            // console.log(date, index);
             return ([date, scores[index]]);
         });
 
 
-        console.log(lineChartData)
+        // console.log(lineChartData)
 
         return (
             <div>
@@ -79,8 +78,8 @@ class TextBox extends React.Component {
                 <p>Press enter to submit</p>
                 
                 <LineChart data={lineChartData} />
-
-                <BarChart w={700} h={400} />
+                
+                <EmailDate />
 
             </div>
         )
