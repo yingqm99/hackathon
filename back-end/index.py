@@ -1,5 +1,5 @@
 from flask import Flask
-
+from flask import request
 import json
 import requests
 from ibm_watson import ToneAnalyzerV3
@@ -142,7 +142,8 @@ def recent_emotion():
 def personal_relations():
     with open('cache.json') as f:
         data = json.load(f)
-    result = aggregate_by_person(data)
+    my_email = request.args.get('user_email', default = "zhuhongt@umich.edu", type = str)
+    result = aggregate_by_person(data, my_email)
     return result
 
 

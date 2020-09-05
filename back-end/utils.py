@@ -10,14 +10,13 @@ from ibm_watson import ToneAnalyzerV3
 APIKEY = "" #TODO
 URL = "" #TODO
 VERSION = "4.6.0"
-MY_EMAIL = "zhuhongt@umich.edu"
 NEGATIVE = ['Anger','Fear','Sadness']
 POSITIVE = ['Joy', 'Confidence']
 
-def aggregate_by_person(data):
+def aggregate_by_person(data, my_email):
     list_contacts = {}
     for item in data:
-        if MY_EMAIL in item['receiver'].lower():#TODO
+        if my_email in item['receiver'].lower():#TODO
             text = re.sub(r"<.*>", " ", item['sender'].lower())
             print(text)
             if text not in list_contacts: 
