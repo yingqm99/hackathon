@@ -53,6 +53,7 @@ def get_message(service, user_id, msg_ids):
 
 def clean_up(messages):
     json_dict = []
+    oder = 0
     for msg in messages:
         df = {}
         df['id'] = msg['id']
@@ -60,15 +61,26 @@ def clean_up(messages):
         headers = msg['payload']['headers']
         geojson = list(filter(lambda x: x['name'] == 'From',
                             headers))
+        if geojson == []:
+            continue
         df['sender'] = geojson[0].get('value')
+
         geojson = list(filter(lambda x: x['name'] == 'To',
                             headers))
+        if geojson == []:
+            continue
         df['receiver'] = geojson[0].get('value')
+
         geojson = list(filter(lambda x: x['name'] == 'Date',
                             headers))
-        df['date'] = geojson[0].get('value')
+        if geojson == []:
+            continue
+
+        date = parse(geojson[0].get('value'))
+        df['date'] = str(date.year)+'{0:0=2d}'.format(date.month)+'{0:0=2d}'.format(date.day)
         json_dict.append(df)
     return json_dict
+
 
 def gmailAuth():
     """Login with credentials.

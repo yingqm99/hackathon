@@ -10,7 +10,7 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 def get_messages(service, user_id):
     try:
-        response = service.users().messages().list(userId=user_id, maxResults=10).execute()
+        response = service.users().messages().list(userId=user_id, maxResults=50).execute()
         next_page = response["nextPageToken"]
         messages = [item.get('id') for item in response["messages"]]
         return messages
@@ -31,6 +31,7 @@ def get_message(service, user_id, msg_ids):
 
 def clean_up(messages):
     json_dict = []
+    oder = 0
     for msg in messages:
         df = {}
         df['id'] = msg['id']
@@ -38,15 +39,28 @@ def clean_up(messages):
         headers = msg['payload']['headers']
         geojson = list(filter(lambda x: x['name'] == 'From',
                             headers))
+        if geojson == []:
+            print("no from", oder)
+            continue
         df['sender'] = geojson[0].get('value')
+
         geojson = list(filter(lambda x: x['name'] == 'To',
                             headers))
+        if geojson == []:
+            print("no to", oder)
+            continue
         df['receiver'] = geojson[0].get('value')
+
         geojson = list(filter(lambda x: x['name'] == 'Date',
                             headers))
+        if geojson == []:
+            print("no date", oder)
+            continue
+
         date = parse(geojson[0].get('value'))
         df['date'] = str(date.year)+'{0:0=2d}'.format(date.month)+'{0:0=2d}'.format(date.day)
         json_dict.append(df)
+        oder += 1
     return json_dict
 
 
@@ -72,8 +86,6 @@ def main():
     message_ids = get_messages(service, 'me')
     results = get_message(service, 'me', message_ids)
     textualize = clean_up(results)
-
-    print("textualize: ", textualize)
 
     with open('texts.json', 'w') as json_file:
         json.dump(textualize, json_file)
