@@ -19,9 +19,14 @@ from utils import aggregate_by_tone, aggregate_by_date, recent_tone, aggregate_b
 app = Flask(__name__)
 
 ############### IBM ###############
-apikey = "LHiAsPDfojrabmyLdVSbw87gY4hVJScdoIyRD7nNHKao" #TODO
-url = "https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/a624be02-9f6a-4a57-8b1c-2fa687021e3b/v3/tone"
+apikey = "drrjUkHl_QBYeLBMQZdsJpab32YkSIZkEmnbhU8VDgqe" #
+url = "https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/1abc1b3d-1aba-4341-8085-098e63618c83/v3/tone"
 version = "4.6.0"
+
+# curltest
+# curl -X GET -u "apikey:drrjUkHl_QBYeLBMQZdsJpab32YkSIZkEmnbhU8VDgqe" \
+# "https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/1abc1b3d-1aba-4341-8085-098e63618c83/v3/tone?version=2017-09-21&text=Team%2C%20I%20know%20that%20times%20are%20tough%21%20Product%20sales%20have%20been%20disappointing%20for%20the%20past%20three%20quarters.%20We%20have%20a%20competitive%20product%2C%20but%20we%20need%20to%20do%20a%20better%20job%20of%20selling%20it%21"
+
 
 authenticator = IAMAuthenticator( apikey )
 tone_analyzer = ToneAnalyzerV3(
