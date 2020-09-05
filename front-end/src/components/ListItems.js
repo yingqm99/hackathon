@@ -1,14 +1,16 @@
 import React from 'react';
 import App from '../App';
+import '../styles/EmailDate.css';
+import { Tooltip } from 'antd';
 
 // props: date, text, tone
 class Item extends React.Component {
     render() {
         const { date, text, tone } = this.props;
         return(
-            <div>
-                <p>Date: <strong>{date}</strong> Tone: <strong>{tone}</strong></p>
-                <p>Text: {text}</p>
+            <div className="item">
+               <p>Date: <strong>{date}</strong> Tone: <strong>{tone}</strong></p>
+               <p>Text: {text}</p>
             </div>
         )
     }

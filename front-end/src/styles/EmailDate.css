@@ -8,12 +8,29 @@
     margin-left: 100px;
     padding-left: 20px;
     width:400px; 
-    height:800px; 
+    height:1000px;
     
     overflow:scroll;
     position: relative;
 
-    border:solid grey; 
+    /* border:solid grey;  */
+}
+
+.item {
+    padding: 10px 10px;
+    margin: 5px 5px;
+    border-radius:10px;
+    height:80px;
+
+    float:left;
+    position: relative;
+    overflow: hidden;
+    background-color:#D0D0D0;
+}
+
+.item:hover {
+    background-color: grey;
+    height: auto;
 }
 
 .content {
