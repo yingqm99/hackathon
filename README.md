@@ -1,4 +1,8 @@
 
+### Gmail Sentiment Analysis Tool
+-[项目提案](https://docs.google.com/presentation/d/1-2Q3bgghBpHv-JMVL14N0cxV4HNiQBJ3ay32Xb0ETiw/edit?ts=5f53d799#slide=id.g9443376c3b_5_0)
+
+
 
 ### file structure
 ```
@@ -61,40 +65,22 @@ localhost:3000
              "tone": ""
          },
          ...
-     ]
+     ],
+     "tones" : {
+        {'Confident': 
+            {'now': {'score': 0.92567, 'count': 1}}, 
+        'Joy': 
+            {'now': {'score': 0.557822, 'count': 1}},
+        'Tentative': 
+            {'now': {'score': 0.55795, 'count': 1}}, 
+        'Analytical': 
+            {'now': {'score':0.720783, 'count': 1}}, 
+        'Sadness': 
+            {'now': {'score': 0.538199, 'count': 1}}
+        }
+    }
+
  }
- 
- 
- :/recent_emotions
-{
- "data":[{
-          "tone_name" : str,
-          "count" : int
-          },
-        ...,]
- }
-
-
- :/change_of_emotions
- {
- "data":[{
-          'tone_name': str,
-          'change': float,
-          'most_recent_date': int
-          },
-        ...,]
-  }
-  
-  
-  :/personal_relations
-  {
-    "data":[{
-          'person_name': str,
-          'score': int,
-          },
-          ...,]
-  }
-
 
 ```
 
