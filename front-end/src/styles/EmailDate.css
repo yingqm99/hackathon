@@ -14,7 +14,7 @@
     overflow:scroll;
     position: relative;
 
-    border:solid grey; 
+    /* border:solid grey;  */
 }
 
 
@@ -31,7 +31,7 @@
     padding-right: 10px;
 
 
-    border:solid red; 
+    /* border:solid red;  */
 
 }
 
