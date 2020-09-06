@@ -79,7 +79,7 @@ class EmailDate extends Component {
                     <div className="listitems">                         
                        <ListItems emails={emails} />
                     </div>            
-                        <div className="content">
+                    <div className="content">
                             <div className="linecharts">
                                 <PieChart />
                                 <br />
@@ -91,12 +91,15 @@ class EmailDate extends Component {
                                 <br />
                                 <br />
                                 <Change />
+                                <br />
+                                <br />
+                                <PieChart />
                             </div>
                             {/* <div className="piecharts">
                                 <PieChart />
                             </div> */}
-                        </div>
                     </div>
+                </div>
                 }
 
             </div>

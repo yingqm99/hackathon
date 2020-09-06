@@ -4,17 +4,60 @@
 
 .listitems {
     background-color:rgb(255, 255, 255);
+    
     float:left; 
-    margin-left: 100px;
+    margin-left: 30px;
     padding-left: 20px;
-    width:400px; 
+    width: 25%; 
     height:1000px;
     
     overflow:scroll;
     position: relative;
 
-    /* border:solid grey;  */
+    border:solid grey; 
 }
+
+
+.content {
+    float: left;
+    
+    width: 48%;
+
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+
+    border:solid red; 
+
+}
+
+.linecharts {
+    /* background-color: green; */
+    float:left; 
+
+    padding: 10px;
+    margin: 10px;
+    /* margin-left: 10px;
+    padding-right: 50px; */
+    /* width:900px; */
+    height:auto;
+    background-color:white;  
+
+    /* border:solid red;  */
+}
+
+/* .piecharts {
+    margin-left: 100px;
+
+    background-color: white;
+    border:solid green;
+} */
+
+
 
 .item {
     padding: 10px 10px;
@@ -51,36 +94,6 @@
     color: purple;
 }
 
-
-.content {
-    float: left;
-    margin-left: 50px;
-}
-
-.linecharts {
-    /* background-color: green; */
-    float:left; 
-    margin-left: 100px;
-    padding-right: 50px;
-    /* width:900px; */
-    height:500px;
-    background-color:white;  
-    /* border:solid red;  */
-}
-
-/* .piecharts {
-    margin-left: 100px;
-
-    background-color: white;
-    border:solid green;
-} */
-
-.spinner {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
-}
 
 svg path,
 svg rect{
