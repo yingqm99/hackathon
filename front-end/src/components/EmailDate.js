@@ -93,7 +93,7 @@ class EmailDate extends Component {
                                 <Change />
                                 <br />
                                 <br />
-                                <PieChart />
+                                < PersonalRelation />
                             </div>
                             {/* <div className="piecharts">
                                 <PieChart />
