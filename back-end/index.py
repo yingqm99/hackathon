@@ -19,13 +19,9 @@ from utils import aggregate_by_tone, aggregate_by_date, recent_tone, aggregate_b
 app = Flask(__name__)
 
 ############### IBM ###############
-apikey = "drrjUkHl_QBYeLBMQZdsJpab32YkSIZkEmnbhU8VDgqe" #
+apikey = "" #
 url = "https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/1abc1b3d-1aba-4341-8085-098e63618c83/v3/tone"
 version = "4.6.0"
-
-# curltest
-# curl -X GET -u "apikey:drrjUkHl_QBYeLBMQZdsJpab32YkSIZkEmnbhU8VDgqe" \
-# "https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/1abc1b3d-1aba-4341-8085-098e63618c83/v3/tone?version=2017-09-21&text=Team%2C%20I%20know%20that%20times%20are%20tough%21%20Product%20sales%20have%20been%20disappointing%20for%20the%20past%20three%20quarters.%20We%20have%20a%20competitive%20product%2C%20but%20we%20need%20to%20do%20a%20better%20job%20of%20selling%20it%21"
 
 
 authenticator = IAMAuthenticator( apikey )
@@ -41,7 +37,7 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 def get_messages(service, user_id):
     try:
-        response = service.users().messages().list(userId=user_id, maxResults=50).execute()
+        response = service.users().messages().list(userId=user_id, maxResults=2).execute()
         next_page = response["nextPageToken"]
         messages = [item.get('id') for item in response["messages"]]
         return messages

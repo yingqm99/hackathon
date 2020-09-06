@@ -1,20 +1,5 @@
-# {
-#   "apikey": "drrjUkHl_QBYeLBMQZdsJpab32YkSIZkEmnbhU8VDgqe",
-#   "iam_apikey_description": "Auto-generated for key 56f6f4e6-450e-41da-bd5e-6695092032e7",
-#   "iam_apikey_name": "Auto-generated service credentials",
-#   "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
-#   "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/565e8647452c4fbfa89260a53067e002::serviceid:ServiceId-7b9305ed-c864-4dd1-8429-c234beb9e853",
-#   "url": "https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/1abc1b3d-1aba-4341-8085-098e63618c83"
-# }
 
-
-# curl -X POST -u "apikey:{apikey}" \
-# --header "Content-Type: application/json" \
-# --data-binary @/Users/duochen/Desktop/Winter20/Unicode/hackathon/back-end/tone.json \
-# "https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/a624be02-9f6a-4a57-8b1c-2fa687021e3b/v3/tone?version=2017-09-21"
-
-
-apikey = "LHiAsPDfojrabmyLdVSbw87gY4hVJScdoIyRD7nNHKao"
+apikey = ""
 url = "https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/a624be02-9f6a-4a57-8b1c-2fa687021e3b"
 version = "4.6.0"
 
@@ -31,8 +16,8 @@ tone_analyzer = ToneAnalyzerV3(
 
 tone_analyzer.set_service_url( url )
 
-curl -X GET -u "apikey:drrjUkHl_QBYeLBMQZdsJpab32YkSIZkEmnbhU8VDgqe" \
-"https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/1abc1b3d-1aba-4341-8085-098e63618c83/v3/tone?version=2017-09-21&text=Team%2C%20I%20know%20that%20times%20are%20tough%21%20Product%20sales%20have%20been%20disappointing%20for%20the%20past%20three%20quarters.%20We%20have%20a%20competitive%20product%2C%20but%20we%20need%20to%20do%20a%20better%20job%20of%20selling%20it%21"
+# curl -X GET -u "apikey:drrjUkHl_QBYeLBMQZdsJpab32YkSIZkEmnbhU8VDgqe" \
+# "https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/1abc1b3d-1aba-4341-8085-098e63618c83/v3/tone?version=2017-09-21&text=Team%2C%20I%20know%20that%20times%20are%20tough%21%20Product%20sales%20have%20been%20disappointing%20for%20the%20past%20three%20quarters.%20We%20have%20a%20competitive%20product%2C%20but%20we%20need%20to%20do%20a%20better%20job%20of%20selling%20it%21"
 
 text = 'Team, I know that times are tough! Product sales have been disappointing for the past three quarters. We have a competitive product, but we need to do a better job of selling it!'
 
@@ -41,7 +26,7 @@ params = (
     ('text', text),
 )
 
-response = requests.get('https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/a624be02-9f6a-4a57-8b1c-2fa687021e3b/v3/tone', params=params, auth=('apikey', 'LHiAsPDfojrabmyLdVSbw87gY4hVJScdoIyRD7nNHKao'))
+response = requests.get('https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/a624be02-9f6a-4a57-8b1c-2fa687021e3b/v3/tone', params=params, auth=('apikey', ''))
 
 
 print(response.text)

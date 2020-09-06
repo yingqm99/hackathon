@@ -2,7 +2,7 @@
 ### Gmail Sentiment Analysis Tool
 -[项目提案](https://docs.google.com/presentation/d/1-2Q3bgghBpHv-JMVL14N0cxV4HNiQBJ3ay32Xb0ETiw/edit?ts=5f53d799#slide=id.g9443376c3b_5_0)
 
-
+-[项目demo](./zoom_0.mp4)
 
 ### file structure
 ```
